@@ -1,0 +1,112 @@
+@media screen and (min-width: $break-sm) {
+  .product-card {
+    margin-left: 0.5rem;
+    display: flex;
+    min-height: 25rem;
+
+    .product {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 1rem;
+      width: 16rem;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      margin: 0 0.6rem;
+
+      .background-success {
+        background: var(--success-color);
+        align-items: center;
+        h4 {
+          font-size: 1.1rem !important;
+        }
+      }
+
+      .background-danger {
+        background: var(--primary-color);
+      }
+
+      .offer-label {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        height: 40px;
+
+        h4 {
+          margin: 0;
+          padding: 0.3rem 0;
+          font-weight: bold;
+          color: var(--text-color);
+        }
+      }
+
+      img {
+        width: auto;
+        height: 8rem;
+      }
+
+      .group-text {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0.3rem;
+
+        span {
+          white-space: pre-wrap;
+        }
+
+        #product-name {
+          font-weight: 500;
+          font-size: 1.05rem;
+          margin-bottom: 0.3rem;
+        }
+
+        #price-of-for {
+          color: var(--danger-color);
+          font-weight: 700;
+          text-decoration: line-through;
+        }
+
+        #no-discounted-price {
+          font-size: 1.7rem;
+          font-weight: 1000;
+        }
+
+        #save-price {
+          color: var(--primary-color);
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+      }
+      .group-button {
+        button {
+          padding: 0 1rem 0.3rem 1rem;
+          border-radius: 0.5rem;
+          color: var(--text-color);
+          font-size: 1.2rem;
+          border: 2px solid var(--primary-color-hover);
+        }
+      }
+
+      &:hover {
+        box-shadow: inset 0 0 0 1px var(--secondary-text-color);
+
+        .offer-label {
+          transition: all 0.5s ease;
+          border-radius: 15px 15px 0 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-md) {
+}

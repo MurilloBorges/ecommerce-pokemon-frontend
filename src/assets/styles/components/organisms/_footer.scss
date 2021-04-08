@@ -1,0 +1,48 @@
+@media screen and (min-width: $break-sm) {
+  .footer {
+    width: 100%;
+    background: var(--footer-color);
+    padding: 0.8rem 4rem;
+
+    span {
+      color: var(--card-border-color);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    img {
+      width: 6rem;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .group-footer-icons {
+      svg {
+        cursor: pointer;
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
+
+      svg:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $break-md) {
+  .footer {
+    div:first-child {
+      flex-direction: column;
+    }
+
+    .footer-group {
+      div {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-l) {
+}

@@ -1,0 +1,17 @@
+@media screen and (min-width: $break-sm) {
+  .product-list {
+    .container-product-list {
+      margin: 2rem 8rem;
+    }
+
+    .product-list-section {
+      display: flex;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (min-width: $break-l) {
+}

@@ -1,0 +1,14 @@
+@media screen and (min-width: $break-sm) {
+  .banner {
+    img {
+      width: 100%;
+      height: 20rem;
+    }
+  }
+}
+
+@media screen and (max-width: $break-md) {
+}
+
+@media screen and (min-width: $break-l) {
+}

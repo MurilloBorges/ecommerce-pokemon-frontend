@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   width="48"
+   height="48"
+   viewBox="0 0 12 12">
+  
+  <style>
+    #grupo {
+      animation: rotation 2s linear infinite;
+      transform-origin: center;
+    }
+    @keyframes rotation {
+      from {
+        transform: rotateZ(0deg)
+      }
+      to {
+        transform: rotateZ(360deg)
+      }
+    }
+  </style>
+  <g id="grupo">
+    <circle
+      id="circle1"
+      cx="6"
+      cy="2.5"
+      fill="#2c89a0"
+      style="fill:#2c89a0;fill-opacity:1;stroke-width:0.512292"
+      r="2.5" />
+    <circle
+      id="circle2"
+      cx="10"
+      cy="6"
+      r="2"
+      fill="#aa0044"
+      style="stroke-width:0.262443" />
+    <circle
+      id="circle3"
+      cx="6"
+      cy="10.5"
+      r="1.5"
+      fill="#008066"
+      style="stroke-width:0.262443" />
+    <circle
+      id="circle4"
+      cx="1"
+      cy="6"
+      r="1"
+      fill="#aa4400"
+      style="stroke-width:0.262443" />
+  </g>
+</svg>

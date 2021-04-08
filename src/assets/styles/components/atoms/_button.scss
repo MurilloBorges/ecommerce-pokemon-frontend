@@ -1,0 +1,11 @@
+@media screen and (min-width: $break-sm) {
+  button {
+    border: none;
+    background-color: var(--primary-color);
+    padding: 1rem;
+    color: var(--secondary-color);
+    line-height: 1;
+    border-radius: .3rem;
+    outline: none;
+  }
+}

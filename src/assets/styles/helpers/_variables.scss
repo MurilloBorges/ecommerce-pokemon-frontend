@@ -1,0 +1,45 @@
+:root {
+  --primary-color: #ff5450;
+  --danger-color: #f32013;
+  --success-color: #4fa10d;
+  --background-selected: #67b351;
+  --primary-color-hover: #d03b37;
+  --secondary-color: #ffe800;
+  --tertiary-color: #f47920;
+  --text-color: #ffeffc;
+  --secondary-text-color: #8e918f;
+  --badge-deactive: #eeeeee;
+  --text-color-hover: #5b5e5c;
+  --product-name-card: #414141;
+  --card-border-color: #d5d5d5;
+  --menu-category-background: #edeef2;
+  --footer-color: #000000;
+  --menu-footer-color: #f8f8f8;
+  --background-color: #fff;
+  --box-shadow: 1px 1px 7px 0px #7a7b7d;
+  --card-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  --card-border: 1px solid #462a71;
+  --bg-color-light: #f6f6f6;
+
+  //input-text
+  --input-text-border-color: #979799;
+  --input-text-color: #979799;
+  --input-text-background: #eff0f4;
+
+  //icon-button
+  --icon-button-background-success: #92ce8e;
+  --icon-button-background-success-hover: #76ab72;
+  --icon-button-background-disabled-hover: #7e7e80;
+}
+
+$break-sm: 320px;
+$break-s: 360px;
+$break-sm-md: 620px;
+$break-md: 960px;
+$break-l: 1367px;
+
+$bg-color: rgba(150, 250, 255, 0.5);
+$bg2-color: rgba(100, 100, 200, 0.5);
+$modal-color: rgba(250, 250, 255, 0.4);
+$box-shadow: 0.3rem 0.5rem 0.8rem 0.5rem rgb(150 150 155 / 30%),
+  0.3rem 0.5rem 0.8rem 0.5rem rgb(250 250 255 / 30%);

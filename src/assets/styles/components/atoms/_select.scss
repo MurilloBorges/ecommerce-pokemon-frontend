@@ -1,0 +1,26 @@
+@media screen and (min-width: $break-sm) {
+  .select {
+    border: none;
+    background-color: #fff;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 0.3rem;
+    outline: none;
+    margin: 0.3rem 0;
+    &:focus {
+      background-color: transparentize($bg-color, 0.3);
+    }
+  }
+}
+
+@media screen and (min-width: $break-md) {
+  .select {
+    padding: 0.3rem;
+  }
+}
+
+@media screen and (min-width: $break-l) {
+  .select {
+    padding: 0.4rem;
+  }
+}

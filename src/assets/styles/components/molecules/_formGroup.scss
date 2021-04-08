@@ -1,0 +1,15 @@
+@media screen and (min-width: $break-sm) {
+  label {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: $break-md) {
+  label {
+    font-size: .7rem;
+    width: 100%;
+  }
+}

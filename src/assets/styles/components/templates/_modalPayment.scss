@@ -1,0 +1,50 @@
+@media screen and (min-width: $break-sm) {
+  .overlay {
+    .modal {
+      &__close {
+        left: 10rem;
+      }
+      .payment {
+        svg {
+          margin-top: 1rem;
+        }
+        h5 {
+          color: var(--primary-color);
+          font-weight: 600;
+          margin: 1.2rem 0;
+        }
+        #continue {
+          background-color: var(--primary-color);
+          color: #fff;
+          font-weight: bolder;
+        }
+        #note {
+          color: var(--primary-color);
+          font-weight: 600;
+          font-size: 0.6rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-md) {
+  .overlay {
+    .modal {
+      &__close {
+        left: 13rem;
+      }
+      .button-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        button {
+          width: 47.5%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-l) {
+}

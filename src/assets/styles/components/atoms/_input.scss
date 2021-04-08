@@ -1,0 +1,105 @@
+@media screen and (min-width: $break-sm) {
+  .input {
+    &-text,
+    &-password,
+    &-email {
+      border: 1px solid var(--card-border-color);
+      background-color: #fff;
+      padding: 1rem;
+      width: 100%;
+      border-radius: 0.3rem;
+      outline: none;
+      margin: 0.3rem 0;
+
+      &:focus {
+        background-color: transparentize($bg-color, 0.3);
+      }
+    }
+
+    &-checkbox {
+      // Resetando a aparencia do input radio
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      -o-appearance: none;
+      appearance: none;
+      // ====================
+
+      height: 25px;
+      width: 25px;
+      min-width: 25px;
+      transition: all 0.15s ease-out 0s;
+      background: #cbd1d8;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      margin-right: 1rem;
+      outline: none;
+      position: relative;
+      border-radius: 0.5rem;
+
+      &__group {
+        display: flex;
+        align-items: center;
+
+        label {
+          margin-bottom: 0;
+        }
+      }
+
+      &:hover {
+        background: #9faab7;
+      }
+
+      &:checked {
+        background: var(--primary-color);
+
+        &::before {
+          height: 25px;
+          width: 25px;
+          position: absolute;
+          content: "✔";
+          display: inline-block;
+          font-size: 20px;
+          text-align: center;
+          line-height: 25px;
+          color: #fff;
+        }
+
+        ::after {
+          background: var(--primary-color);
+          content: "";
+          display: block;
+          position: relative;
+          z-index: 100;
+        }
+      }
+    }
+
+    &--invalid {
+      background-color: #f5d1d4;
+      border: 1px solid #dc3545;
+    }
+  }
+}
+
+@media screen and (min-width: $break-md) {
+  .input {
+    &-text,
+    &-password,
+    &-email {
+      padding: 0.3rem;
+    }
+  }
+}
+
+@media screen and (min-width: $break-l) {
+  .input {
+    &-text,
+    &-password,
+    &-email {
+      padding: 0.4rem;
+    }
+  }
+}
