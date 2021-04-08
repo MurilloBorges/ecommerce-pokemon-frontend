@@ -1,10 +1,10 @@
 @media screen and (min-width: $break-sm) {
-  .product-card {
+  .pokemon-card {
     margin-left: 0.5rem;
     display: flex;
     min-height: 25rem;
 
-    .product {
+    .pokemon {
       position: relative;
       display: flex;
       flex-direction: column;
@@ -63,7 +63,7 @@
           white-space: pre-wrap;
         }
 
-        #product-name {
+        #pokemon-name {
           font-weight: 500;
           font-size: 1.05rem;
           margin-bottom: 0.3rem;

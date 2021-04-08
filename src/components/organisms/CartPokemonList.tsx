@@ -58,7 +58,7 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
     await promise;
   };
 
-  const handleRemoveProduct = async () => {
+  const handleRemovePokemon = async () => {
     const promise = new Promise(() => {
       const pokemonList = handleShoppingCart(shoppingCart, pokemon, 0);
       dispatch(dispatcher('SHOPPING_CART', [...pokemonList]));
@@ -106,7 +106,7 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
           <div
             tabIndex={0}
             role="button"
-            onClick={() => handleRemoveProduct()}
+            onClick={() => handleRemovePokemon()}
             onKeyDown={() => {}}
           >
             <IconSVG
@@ -145,7 +145,7 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
               <div>
                 <Image src={pokemon.image || ImageNotFound} />
               </div>
-              <div className="section-product-name">
+              <div className="section-pokemon-name">
                 <Subtitle type="span" text={pokemon?.name} />
               </div>
               <div>
@@ -184,7 +184,7 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
               <div>
                 <Image src={pokemon.image || ImageNotFound} />
               </div>
-              <div className="section-product-name">
+              <div className="section-pokemon-name">
                 <Subtitle type="span" text={pokemon?.name} />
               </div>
               <div>

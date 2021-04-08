@@ -12,7 +12,7 @@ import IconSVG from '../molecules/IconSVG';
 
 import Modal from '../organisms/Modal';
 
-import CartProductList from '../organisms/CartPokemonList';
+import CartPokemonList from '../organisms/CartPokemonList';
 
 import { formatReal } from '../../helpers/number';
 
@@ -54,7 +54,7 @@ const ModalCart: React.FC<ModalCartProps> = ({
           </h6>
         )}
         {shoppingCart.map((pokemon, key) => (
-          <CartProductList
+          <CartPokemonList
             type="shoppingCart"
             key={key.toString()}
             pokemon={pokemon}

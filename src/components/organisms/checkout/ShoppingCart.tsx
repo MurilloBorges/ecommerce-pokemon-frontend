@@ -8,7 +8,7 @@ import ModalPayment from 'src/components/templates/ModalPayment';
 
 import { formatReal } from 'src/helpers/number';
 
-import CartProductList from '../CartPokemonList';
+import CartPokemonList from '../CartPokemonList';
 
 const ShoppingCart: React.FC = () => {
   const [totalCart, setTotalCart] = React.useState(0);
@@ -31,11 +31,11 @@ const ShoppingCart: React.FC = () => {
       <div className="modal-cart">
         {!shoppingCart.length && (
           <h6 className="text-center">
-            Nenhum produto adicionado no carrinho!
+            Nenhum Pokémon adicionado no carrinho!
           </h6>
         )}
         {shoppingCart.map((pokemon, key) => (
-          <CartProductList
+          <CartPokemonList
             type="checkout"
             key={key.toString()}
             pokemon={pokemon}

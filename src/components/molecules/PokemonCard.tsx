@@ -105,8 +105,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   }, [shoppingCart]);
 
   return (
-    <div key={id} className="product-card">
-      <div className="product">
+    <div key={id} className="pokemon-card">
+      <div className="pokemon">
         {/* {promotion && (
           <div className="offer-label background-danger">
             <Title type="h4" text="OFERTA" />
@@ -125,7 +125,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
         )} */}
         <Image src={image || notFoundImage} alt="" />
         <div className="group-text">
-          <Subtitle props={{ id: 'product-name' }} type="span" text={name} />
+          <Subtitle props={{ id: 'pokemon-name' }} type="span" text={name} />
           {/* <Subtitle
             props={
               retailPrice !== retailPromotionPrice ? { id: 'price-of-for' } : {}
