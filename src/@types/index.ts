@@ -1,31 +1,6 @@
 import React from 'react';
 import { PokemonProps } from './PokemonTypes';
 
-interface ProductsDataProps {
-  id: number;
-  name: string;
-  shortName: string;
-  productDescription: string;
-  barCode: string;
-  unitMeasure: string;
-  stock: string;
-  purchaseLimit: number;
-  retailPrice: string;
-  retailPromotionPrice: string;
-  wholesalePrice: string;
-  wholesalePromotionPrice: string;
-  minimumWholesale: number;
-  promotionOrderLimit: number;
-  offer?: boolean;
-  promotion?: boolean;
-  image: ImagePokemonProps;
-}
-
-interface ImagePokemonProps {
-  url: string;
-  id: string;
-}
-
 interface HrefProps {
   to: string;
   text: string;
@@ -81,10 +56,6 @@ interface NavbarProps {
   logo: string;
   nodes: Record<string, string>[];
   login?: boolean | null;
-}
-
-interface LayoutProps {
-  children: React.ReactNode;
 }
 
 interface InputProps {
@@ -156,11 +127,6 @@ interface LoadingProps {
   loading: boolean;
 }
 
-interface IconBackgroundRoundedProps {
-  icon: string;
-  name?: string;
-}
-
 interface HorizontalOfferProps {
   div: string;
   offerPokemon: PokemonProps[];
@@ -186,19 +152,6 @@ interface ModalCartProps {
   setModalCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface CheckboxCollapseProps {
-  collection: CheckCollapseProps[];
-  handleClick: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  valueCheckbox: string;
-}
-
-interface CheckCollapseProps {
-  id: number | string;
-  name: string;
-  icon: boolean | string;
-  info: string;
-}
-
 export type {
   ButtonProps,
   HrefProps,
@@ -207,7 +160,6 @@ export type {
   LinksProps,
   UlProps,
   NavbarProps,
-  LayoutProps,
   InputProps,
   LabelProps,
   TitleProps,
@@ -219,13 +171,9 @@ export type {
   IconSVGProps,
   SubtitleProps,
   ButtonIconProps,
-  IconBackgroundRoundedProps,
   HorizontalOfferProps,
   PokemonCardProps,
   BannerProps,
   QuantitativeGroupButtonProps,
-  ProductsDataProps,
   ModalCartProps,
-  CheckboxCollapseProps,
-  CheckCollapseProps,
 };

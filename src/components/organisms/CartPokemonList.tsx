@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ShoppingCartProps } from 'src/@types/ShoppingCart';
+import ShoppingCartProps from 'src/@types/ShoppingCart';
 
 import { handleShoppingCart } from 'src/helpers/shoppingCart';
 
@@ -24,7 +24,7 @@ const dispatcher = (type: string, payload: ShoppingCartProps[]) => ({
   payload,
 });
 
-const CartProductList: React.FC<PokemonCardProps> = ({
+const CartPokemonList: React.FC<PokemonCardProps> = ({
   type,
   pokemon,
 }: PokemonCardProps) => {
@@ -51,8 +51,8 @@ const CartProductList: React.FC<PokemonCardProps> = ({
   const verifyShoppingCart = async () => {
     if (!isEdited) return;
     const promise = new Promise(() => {
-      const products = handleShoppingCart(shoppingCart, pokemon, quantity);
-      dispatch(dispatcher('SHOPPING_CART', [...products]));
+      const pokemonList = handleShoppingCart(shoppingCart, pokemon, quantity);
+      dispatch(dispatcher('SHOPPING_CART', [...pokemonList]));
     });
 
     await promise;
@@ -60,8 +60,8 @@ const CartProductList: React.FC<PokemonCardProps> = ({
 
   const handleRemoveProduct = async () => {
     const promise = new Promise(() => {
-      const products = handleShoppingCart(shoppingCart, pokemon, 0);
-      dispatch(dispatcher('SHOPPING_CART', [...products]));
+      const pokemonList = handleShoppingCart(shoppingCart, pokemon, 0);
+      dispatch(dispatcher('SHOPPING_CART', [...pokemonList]));
     });
 
     await promise;
@@ -143,7 +143,7 @@ const CartProductList: React.FC<PokemonCardProps> = ({
           <>
             <div className="container-modal-cart">
               <div>
-                {/* <Image src={pokemon?.image?.url || ImageNotFound} /> */}
+                <Image src={pokemon.image || ImageNotFound} />
               </div>
               <div className="section-product-name">
                 <Subtitle type="span" text={pokemon?.name} />
@@ -182,7 +182,7 @@ const CartProductList: React.FC<PokemonCardProps> = ({
             </div> */}
             <div className="container-modal-cart">
               <div>
-                {/* <Image src={pokemon?.image?.url || ImageNotFound} /> */}
+                <Image src={pokemon.image || ImageNotFound} />
               </div>
               <div className="section-product-name">
                 <Subtitle type="span" text={pokemon?.name} />
@@ -221,4 +221,4 @@ const CartProductList: React.FC<PokemonCardProps> = ({
   return <div className="container-cart">{handleConfigureLayout()}</div>;
 };
 
-export default CartProductList;
+export default CartPokemonList;

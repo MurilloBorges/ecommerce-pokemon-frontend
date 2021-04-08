@@ -1,4 +1,4 @@
-import { ShoppingCartProps } from 'src/@types/ShoppingCart';
+import ShoppingCartProps from 'src/@types/ShoppingCart';
 
 const initialState = [];
 

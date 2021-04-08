@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { ShoppingCartProps } from 'src/@types/ShoppingCart';
+import ShoppingCartProps from 'src/@types/ShoppingCart';
 import Title from 'src/components/atoms/Title';
 import IconSVG from 'src/components/molecules/IconSVG';
 import ModalPayment from 'src/components/templates/ModalPayment';
 
 import { formatReal } from 'src/helpers/number';
 
-import CartProductList from '../CartProductList';
+import CartProductList from '../CartPokemonList';
 
 const ShoppingCart: React.FC = () => {
   const [totalCart, setTotalCart] = React.useState(0);

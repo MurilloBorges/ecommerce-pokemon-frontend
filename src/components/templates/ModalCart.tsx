@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { ShoppingCartProps } from 'src/@types/ShoppingCart';
+import ShoppingCartProps from 'src/@types/ShoppingCart';
 
 import { ModalCartProps } from '../../@types';
 
@@ -12,7 +12,7 @@ import IconSVG from '../molecules/IconSVG';
 
 import Modal from '../organisms/Modal';
 
-import CartProductList from '../organisms/CartProductList';
+import CartProductList from '../organisms/CartPokemonList';
 
 import { formatReal } from '../../helpers/number';
 
@@ -50,7 +50,7 @@ const ModalCart: React.FC<ModalCartProps> = ({
         </div>
         {!shoppingCart.length && (
           <h6 className="text-center">
-            Nenhum produto adicionado no carrinho :(
+            Nenhum Pokémon adicionado no carrinho :(
           </h6>
         )}
         {shoppingCart.map((pokemon, key) => (

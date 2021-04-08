@@ -1,5 +1,5 @@
 import { PokemonProps } from 'src/@types/PokemonTypes';
-import { ShoppingCartProps } from '../@types/ShoppingCart';
+import ShoppingCartProps from '../@types/ShoppingCart';
 
 const handleShoppingCart = (
   pokemonList: ShoppingCartProps[],
@@ -7,7 +7,7 @@ const handleShoppingCart = (
   quantity: number,
 ): ShoppingCartProps[] => {
   const newPokemonList = pokemonList;
-  const { id, name, url } = pokemon;
+  const { id, name, url, image } = pokemon;
   // retailPrice,
 
   const filteredPokemon = newPokemonList.filter(prod => prod.id === id);
@@ -16,6 +16,7 @@ const handleShoppingCart = (
       id,
       name,
       url,
+      image: image as string,
       quantity: 1,
     });
     // retailPrice,

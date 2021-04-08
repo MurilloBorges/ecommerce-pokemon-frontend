@@ -9,7 +9,6 @@ const HorizontalOfferPokemon: React.FC<HorizontalOfferProps> = ({
   offerPokemon,
   div,
 }: HorizontalOfferProps) => {
-  console.log('teste', offerPokemon);
   const leftScroll = () => {
     const container = document.getElementById(div);
     container?.scrollBy({

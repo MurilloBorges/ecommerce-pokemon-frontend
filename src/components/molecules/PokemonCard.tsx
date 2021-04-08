@@ -1,8 +1,13 @@
-import React from 'react';
-
+/* eslint-disable no-void */
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { ShoppingCartProps } from '../../@types/ShoppingCart';
+// SERVICES
+import PokemonService from 'src/services/PokemonService';
+
+// INTERFACES
+import { PokemonProps } from 'src/@types/PokemonTypes';
+import ShoppingCartProps from '../../@types/ShoppingCart';
 
 import { PokemonCardProps } from '../../@types';
 
@@ -33,11 +38,25 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   const dispatch = useDispatch();
   const [openAdition, setopenAdition] = React.useState(false);
   const [quantity, setQuantity] = React.useState(0);
+  const [image, setImage] = useState<string | null>(null);
 
   const shoppingCart = useSelector(
     (store: Record<string, unknown>) =>
       store.shoppingCart as ShoppingCartProps[],
   );
+
+  async function getPokemonImage() {
+    const instance = PokemonService.getInstance();
+    const res = await instance.getById(id);
+    if (res.status === 200) {
+      const data = res.data as PokemonProps;
+      setImage(data.sprites?.other.dream_world.front_default as string);
+    }
+  }
+
+  useEffect(() => {
+    void getPokemonImage();
+  }, []);
 
   const handleOpenAdition = () => {
     setopenAdition(!openAdition);
@@ -55,8 +74,12 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
 
   const verifyShoppingCart = async () => {
     const promise = new Promise(() => {
-      const products = handleShoppingCart(shoppingCart, pokemon, quantity);
-      dispatch(dispatcher('SHOPPING_CART', [...products]));
+      const pokemonlist = handleShoppingCart(
+        shoppingCart,
+        { ...pokemon, image: image as string },
+        quantity,
+      );
+      dispatch(dispatcher('SHOPPING_CART', [...pokemonlist]));
     });
 
     await promise;
@@ -100,7 +123,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
             <Title type="h4" text="OFERTA EXCLUSIVA" />
           </div>
         )} */}
-        {/* <Image src={image?.url || notFoundImage} alt="" /> */}
+        <Image src={image || notFoundImage} alt="" />
         <div className="group-text">
           <Subtitle props={{ id: 'product-name' }} type="span" text={name} />
           {/* <Subtitle

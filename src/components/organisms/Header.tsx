@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // INTERFACES
-import { ShoppingCartProps } from 'src/@types/ShoppingCart';
+import ShoppingCartProps from 'src/@types/ShoppingCart';
 
 import Image from '../atoms/Image';
 import Input from '../atoms/Input';
