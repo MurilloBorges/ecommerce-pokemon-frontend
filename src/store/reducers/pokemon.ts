@@ -1,18 +1,13 @@
 import { PokemonProps } from 'src/@types/PokemonTypes';
 
-const initialState = {
-  pokemonlist: [],
-};
+const initialState = [];
 
 type ACTIONTYPE = { type: 'POKEMON_LIST'; payload: PokemonProps[] };
 
-function category(
-  state = initialState,
-  action: ACTIONTYPE,
-): Record<string, unknown> {
+function category(state = initialState, action: ACTIONTYPE): PokemonProps[] {
   switch (action.type) {
     case 'POKEMON_LIST':
-      return { pokemonlist: action.payload };
+      return [...action.payload];
     default:
       return state;
   }

@@ -16,6 +16,7 @@ interface IconSVGProps {
 }
 
 interface ImageProps {
+  id?: string;
   src: RequestInfo;
   classes?: string;
   alt?: string;

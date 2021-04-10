@@ -1,6 +1,6 @@
 /* eslint-disable no-void */
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // SERVICES
 import PokemonService from 'src/services/PokemonService';
@@ -16,14 +16,16 @@ import bgWater from '../../assets/images/bg-poke-ball-water.jpg';
 import bgDragon from '../../assets/images/bg-poke-ball-dragon.jpg';
 import banner from '../../assets/images/banner.jpg';
 
-const dispatcher = (type: string, payload: boolean) => ({
+const dispatcher = (type: string, payload: boolean | PokemonProps[]) => ({
   type,
   payload,
 });
 
 const Home: React.FC = () => {
+  const pokes = useSelector(
+    (store: Record<string, unknown>) => store.pokemon as PokemonProps[],
+  );
   const dispatch = useDispatch();
-  const [pokes, setPokes] = useState<PokemonProps[]>([]);
 
   async function getPokemon() {
     dispatch(dispatcher('LOADING', true));
@@ -38,7 +40,7 @@ const Home: React.FC = () => {
           retailPrice: Math.floor(Math.random() * 9999) + 1,
           retailPromotionPrice: Math.floor(Math.random() * 9999) + 1,
         })) as PokemonProps[];
-        setPokes(pokemonFiltred);
+        dispatch(dispatcher('POKEMON_LIST', [...pokemonFiltred]));
       }
     } catch (error) {
       Error.generic(error);

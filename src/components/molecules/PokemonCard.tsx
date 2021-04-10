@@ -33,12 +33,12 @@ const dispatcher = (type: string, payload: boolean | ShoppingCartProps[]) => ({
 const PokemonCard: React.FC<PokemonCardProps> = ({
   pokemon,
 }: PokemonCardProps) => {
-  const { id, name, url, retailPrice, retailPromotionPrice } = pokemon;
+  const { id, name, url, retailPrice, retailPromotionPrice, image } = pokemon;
 
   const dispatch = useDispatch();
   const [openAdition, setopenAdition] = React.useState(false);
   const [quantity, setQuantity] = React.useState(0);
-  const [image, setImage] = useState<string | null>(null);
+  const [currentImage, setCurrentImage] = useState<string | null>(null);
 
   const shoppingCart = useSelector(
     (store: Record<string, unknown>) =>
@@ -51,7 +51,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
       const res = await instance.getById(id);
       if (res.status === 200) {
         const data = res.data as PokemonProps;
-        setImage(data.sprites?.other.dream_world.front_default as string);
+        setCurrentImage(
+          data.sprites?.other.dream_world.front_default as string,
+        );
       }
     } catch (error) {
       Error.generic(error);
@@ -61,7 +63,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   }
 
   useEffect(() => {
-    void getPokemonImage();
+    if (!image) {
+      void getPokemonImage();
+    }
   }, []);
 
   const handleOpenAdition = () => {
@@ -111,8 +115,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   }, [shoppingCart]);
 
   return (
-    <div key={id} className="pokemon-card">
-      <div className="pokemon">
+    <div key={id} className="pokemon-card" id={id.toString()}>
+      <div className="pokemon" id={name}>
         {(retailPromotionPrice || 0) < (retailPrice || 0) && (
           <div className="offer-label background-danger">
             <Title type="h4" text="OFERTA" />
@@ -130,7 +134,11 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
             <Title type="h4" text="OFERTA EXCLUSIVA" />
           </div>
         )}
-        <Image src={image || notFoundImage} alt="" />
+        <Image
+          id={id.toString()}
+          src={currentImage || image || notFoundImage}
+          alt={name}
+        />
         <div className="group-text">
           <Subtitle props={{ id: 'pokemon-name' }} type="span" text={name} />
           <Subtitle

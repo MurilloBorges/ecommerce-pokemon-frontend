@@ -52,7 +52,7 @@ export default class Error {
         case 401:
         case 404:
           console.log(data);
-          data.errors.map(er => toast.info(er.error));
+          toast.info('Nenhuma informação encontrada.');
           break;
         case 422:
           console.log(data);

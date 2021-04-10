@@ -18,4 +18,7 @@ export default class PokemonService extends HttpClientEcommerce {
 
   public getById = (id: number): AxiosPromise =>
     this.instance.get<IPokemonInterface>(`/pokemon/${id}/`);
+
+  public search = (query: number | string): AxiosPromise =>
+    this.instance.get<IPokemonInterface>(`/pokemon/${query}`);
 }
