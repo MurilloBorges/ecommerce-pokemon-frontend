@@ -7,8 +7,6 @@ import Routes from './routes';
 import Loader from './components/templates/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Footer from './components/organisms/Footer';
-
 function App(): React.ReactElement {
   const [loading, setLoading] = React.useState(true);
   const loader = useSelector(
@@ -26,7 +24,6 @@ function App(): React.ReactElement {
     <Suspense fallback={<Loader />}>
       {(loading || loader) && <Loader />}
       <Routes />
-      <Footer />
     </Suspense>
   );
 }

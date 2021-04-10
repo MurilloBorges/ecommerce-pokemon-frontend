@@ -32,8 +32,7 @@ const dispatcher = (type: string, payload: ShoppingCartProps[]) => ({
 const PokemonCard: React.FC<PokemonCardProps> = ({
   pokemon,
 }: PokemonCardProps) => {
-  const { id, name, url } = pokemon;
-  // retailPrice,
+  const { id, name, url, retailPrice, retailPromotionPrice } = pokemon;
 
   const dispatch = useDispatch();
   const [openAdition, setopenAdition] = React.useState(false);
@@ -107,7 +106,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   return (
     <div key={id} className="pokemon-card">
       <div className="pokemon">
-        {/* {promotion && (
+        {/* {retailPromotionPrice < retailPrice && (
           <div className="offer-label background-danger">
             <Title type="h4" text="OFERTA" />
           </div>
@@ -126,31 +125,41 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
         <Image src={image || notFoundImage} alt="" />
         <div className="group-text">
           <Subtitle props={{ id: 'pokemon-name' }} type="span" text={name} />
-          {/* <Subtitle
+          <Subtitle
             props={
-              retailPrice !== retailPromotionPrice ? { id: 'price-of-for' } : {}
+              retailPromotionPrice &&
+              retailPrice &&
+              retailPromotionPrice < retailPrice
+                ? { id: 'price-of-for' }
+                : {}
             }
             type="span"
             text={
-              retailPrice !== retailPromotionPrice
-                ? `de ${formatReal(retailPromotionPrice)} por`
+              retailPromotionPrice &&
+              retailPrice &&
+              retailPromotionPrice < retailPrice
+                ? `de ${formatReal(retailPrice)} por`
                 : ' '
             }
-          /> */}
-          {/* <Subtitle
+          />
+          <Subtitle
             props={{ id: 'no-discounted-price' }}
             type="span"
-            text={`${formatReal(retailPrice)}`}
-          /> */}
-          {/* <Subtitle
+            text={`${formatReal(retailPromotionPrice as number)}`}
+          />
+          <Subtitle
             props={{ id: 'save-price' }}
             type="span"
             text={
-              retailPrice !== retailPromotionPrice
-                ? `* Economize: ${formatReal(retailPromotionPrice)}`
+              retailPromotionPrice &&
+              retailPrice &&
+              retailPromotionPrice < retailPrice
+                ? `* Economize: ${formatReal(
+                    retailPrice - retailPromotionPrice,
+                  )}`
                 : ' '
             }
-          /> */}
+          />
         </div>
         {!openAdition && (
           <div className="group-button">

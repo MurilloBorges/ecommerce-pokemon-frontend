@@ -25,6 +25,8 @@ const Home: React.FC = () => {
       const pokemonFiltred = data.results.map((result, index) => ({
         ...result,
         id: index + 1,
+        retailPrice: Math.floor(Math.random() * 9999) + 1,
+        retailPromotionPrice: Math.floor(Math.random() * 9999) + 1,
       })) as PokemonProps[];
       setPokes(pokemonFiltred);
     }

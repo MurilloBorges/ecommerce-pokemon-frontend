@@ -16,9 +16,7 @@
 @import "./components/molecules/quantitativeGroupButton";
 
 // ORGANISMS
-@import "./components/organisms/navbar";
 @import "./components/organisms/footer";
-@import "./components/organisms/spinner";
 @import "./components/organisms/modal";
 @import "./components/organisms/header";
 @import "./components/organisms/horizontalOfferPokemon";
@@ -28,9 +26,9 @@
 // TEMPLATES
 @import "./components/templates/notfound";
 @import "./components/templates/modalCart";
-@import "./components/templates/pokemonList";
 @import "./components/templates/checkout";
 @import "./components/templates/modalPayment";
+@import "./components/templates/spinner";
 
 // PAGES
 

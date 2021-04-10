@@ -7,8 +7,7 @@ const handleShoppingCart = (
   quantity: number,
 ): ShoppingCartProps[] => {
   const newPokemonList = pokemonList;
-  const { id, name, url, image } = pokemon;
-  // retailPrice,
+  const { id, name, url, image, retailPrice, retailPromotionPrice } = pokemon;
 
   const filteredPokemon = newPokemonList.filter(prod => prod.id === id);
   if (!filteredPokemon.length) {
@@ -18,8 +17,9 @@ const handleShoppingCart = (
       url,
       image: image as string,
       quantity: 1,
+      retailPrice: retailPrice as number,
+      retailPromotionPrice: retailPromotionPrice as number,
     });
-    // retailPrice,
   } else {
     const iPokemon = newPokemonList.findIndex(prod => prod.id === id);
     if (quantity === 0) newPokemonList.splice(iPokemon, 1);

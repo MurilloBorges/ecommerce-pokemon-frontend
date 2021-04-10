@@ -24,6 +24,8 @@ interface PokemonProps {
   url: string;
   sprites?: SpritesProps;
   image?: string;
+  retailPrice?: number;
+  retailPromotionPrice?: number;
 }
 
 interface ResponsePokemonProps {

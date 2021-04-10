@@ -149,7 +149,15 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
                 <Subtitle type="span" text={pokemon?.name} />
               </div>
               <div>
-                {/* <Title type="h4" text={formatReal(pokemon?.retailPrice)} /> */}
+                <Title
+                  type="h4"
+                  text={
+                    (pokemon?.retailPromotionPrice || 0) <
+                    (pokemon?.retailPrice || 0)
+                      ? formatReal(pokemon?.retailPromotionPrice as number)
+                      : formatReal(pokemon?.retailPrice as number)
+                  }
+                />
               </div>
               <div>
                 <div className="quantitative-group">
@@ -164,55 +172,47 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
             {handleExcludeButtons()}
           </>
         );
-
       case 'checkout': {
         const filteredProd = shoppingCart.find(prod => prod.id === pokemon.id);
-        // const numberedPrice = Number(pokemon?.retailPrice);
-
+        const numberedPrice = Number(pokemon?.retailPrice);
         return (
-          <>
-            {/* TODO: fazer o header da listagem com produtos, quantidades, valor un e total */}
-
-            {/* <div className="">
-              <h5>Produto</h5>
-              <h5> </h5>
-              <h5>Quantidade</h5>
-              <h5>Valor Un.</h5>
-              <h5>Total</h5>
-            </div> */}
-            <div className="container-modal-cart">
-              <div>
-                <Image src={pokemon.image || ImageNotFound} />
-              </div>
-              <div className="section-pokemon-name">
-                <Subtitle type="span" text={pokemon?.name} />
-              </div>
-              <div>
-                <div className="quantitative-group mb-2">
-                  <QuantitativeGroupButton
-                    handleQuantity={handleQuantity}
-                    quantity={quantity}
-                    labelValue="un."
-                  />
-                </div>
-                {handleExcludeButtons()}
-              </div>
-              <div>
-                {/* <Title type="h4" text={formatReal(pokemon?.retailPrice)} /> */}
-              </div>
-              <div>
-                {/* <Title
-                  type="h4"
-                  text={formatReal(
-                    numberedPrice * (filteredProd?.quantity || 1),
-                  )}
-                /> */}
-              </div>
+          <div className="container-modal-cart">
+            <div>
+              <Image src={pokemon.image || ImageNotFound} />
             </div>
-          </>
+            <div className="section-pokemon-name">
+              <Subtitle type="span" text={pokemon?.name} />
+            </div>
+            <div>
+              <div className="quantitative-group mb-2">
+                <QuantitativeGroupButton
+                  handleQuantity={handleQuantity}
+                  quantity={quantity}
+                  labelValue="un."
+                />
+              </div>
+              {handleExcludeButtons()}
+            </div>
+            <div>
+              <Title
+                type="h5"
+                text={
+                  (pokemon?.retailPromotionPrice || 0) <
+                  (pokemon?.retailPrice || 0)
+                    ? formatReal(pokemon?.retailPromotionPrice as number)
+                    : formatReal(pokemon?.retailPrice as number)
+                }
+              />
+            </div>
+            <div>
+              <Title
+                type="h4"
+                text={formatReal(numberedPrice * (filteredProd?.quantity || 1))}
+              />
+            </div>
+          </div>
         );
       }
-
       default:
         return '';
     }

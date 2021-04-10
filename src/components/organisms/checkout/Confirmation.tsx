@@ -14,7 +14,7 @@ const Confirmation: React.FC = () => {
         <Title
           props={{ className: 'confirmation-code' }}
           type="h1"
-          text="#58742698"
+          text={`#${Math.floor(Math.random() * 99999999) + 10000000}`}
         />
         <Title type="h4" text="foi confirmado com sucesso." />
 

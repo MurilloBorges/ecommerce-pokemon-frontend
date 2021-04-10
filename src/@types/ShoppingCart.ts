@@ -1,11 +1,9 @@
 export default interface ShoppingCartProps {
   id: number;
   name: string;
-  // retailPrice: string;
-  // retailPromotionPrice: string;
+  retailPrice: number;
+  retailPromotionPrice: number;
   image: string;
-  // offer?: boolean;
-  // promotion?: boolean;
   url: string;
   quantity: number;
 }
