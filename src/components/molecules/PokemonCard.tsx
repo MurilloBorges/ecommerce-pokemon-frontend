@@ -38,22 +38,21 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   const dispatch = useDispatch();
   const [openAdition, setopenAdition] = React.useState(false);
   const [quantity, setQuantity] = React.useState(0);
-  const [currentImage, setCurrentImage] = useState<string | null>(null);
 
   const shoppingCart = useSelector(
     (store: Record<string, unknown>) =>
       store.shoppingCart as ShoppingCartProps[],
   );
 
-  async function getPokemonImage() {
+  async function getPokemon() {
     try {
       const instance = PokemonService.getInstance();
       const res = await instance.getById(id);
       if (res.status === 200) {
         const data = res.data as PokemonProps;
-        setCurrentImage(
-          data.sprites?.other.dream_world.front_default as string,
-        );
+        // setCurrentImage(
+        //   data.sprites?.other.dream_world.front_default as string,
+        // );
       }
     } catch (error) {
       Error.generic(error);
@@ -61,12 +60,6 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
       dispatch(dispatcher('LOADING', false));
     }
   }
-
-  useEffect(() => {
-    if (!image) {
-      void getPokemonImage();
-    }
-  }, []);
 
   const handleOpenAdition = () => {
     setopenAdition(!openAdition);
@@ -134,11 +127,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
             <Title type="h4" text="OFERTA EXCLUSIVA" />
           </div>
         )}
-        <Image
-          id={id.toString()}
-          src={currentImage || image || notFoundImage}
-          alt={name}
-        />
+        <Image id={id.toString()} src={image || notFoundImage} alt={name} />
         <div className="group-text">
           <Subtitle props={{ id: 'pokemon-name' }} type="span" text={name} />
           <Subtitle

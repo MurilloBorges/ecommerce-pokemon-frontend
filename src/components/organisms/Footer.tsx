@@ -1,6 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+// HELPERS
+import { partners } from 'src/helpers/functions';
+
 import Image from '../atoms/Image';
 import Subtitle from '../atoms/Subtitle';
 import IconSVG from '../molecules/IconSVG';
@@ -19,7 +22,7 @@ const Footer: React.FC = () => {
         <div
           tabIndex={0}
           role="button"
-          onClick={() => history.push('/')}
+          onClick={() => history.push(`/${partners()}`)}
           onKeyDown={() => {}}
           className="image-header"
         >

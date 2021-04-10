@@ -1,6 +1,6 @@
 @media screen and (min-width: $break-sm) {
   .header {
-    background: var(--menu-footer-color);
+    background: var(--primary-color);
   }
 
   .section-header {
@@ -58,18 +58,8 @@
 
       span {
         transition: 0.3s;
-        font-weight: 500;
+        font-weight: 700;
         color: var(--input-text-color);
-      }
-
-      .favorite-section {
-        cursor: pointer;
-      }
-
-      .favorite-section:hover {
-        span {
-          color: var(--icon-button-background-disabled-hover);
-        }
       }
 
       .cart-section {
@@ -89,7 +79,7 @@
           top: -5px;
           right: -10px;
           color: var(--text-color);
-          background-color: var(--primary-color);
+          background-color: var(--tertiary-color);
           transition: 0.3s;
           opacity: 0.8;
         }
@@ -97,19 +87,13 @@
 
       .cart-section:hover {
         svg {
-          fill: var(--icon-button-background-disabled-hover);
+          fill: var(--tertiary-color);
         }
 
         .cart-badge {
           opacity: 1;
         }
       }
-    }
-
-    h6 {
-      color: var(--secondary-text-color);
-      margin: 0;
-      padding-top: 0.4rem;
     }
   }
 

@@ -27,3 +27,14 @@ export function isNotEmpty(value: string | null | undefined): boolean {
 
   return false;
 }
+
+/**
+ * Recupera o parceiro do ecommerce contido na url
+ *
+ * @export
+ * @returns string
+ */
+export const partners = (): string =>
+  window.location.pathname.split('/')[1]
+    ? window.location.pathname.split('/')[1]
+    : 'volcanic';

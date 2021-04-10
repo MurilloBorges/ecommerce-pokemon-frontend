@@ -16,23 +16,6 @@ export const celularMask = [
   /\d/,
 ];
 
-export const telefoneMask = [
-  '(',
-  /[1-9]/,
-  /\d/,
-  ')',
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-];
-
 export const dateMask = [
   /[0-9]/,
   /\d/,

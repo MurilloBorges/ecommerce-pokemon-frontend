@@ -2,6 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+// HELPERS
+import { partners } from 'src/helpers/functions';
+
 import Button from '../atoms/Button';
 import IconSVG from '../molecules/IconSVG';
 
@@ -72,7 +75,9 @@ const Checkout: React.FC = () => {
           <Button
             customClass="btn btn-back"
             handleClick={() =>
-              getActivedStep() === 0 ? history.push('/') : handleStep('undo')
+              getActivedStep() === 0
+                ? history.push(`/${partners()}`)
+                : handleStep('undo')
             }
             text={
               getActivedStep() === 0

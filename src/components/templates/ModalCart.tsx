@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import ShoppingCartProps from 'src/@types/ShoppingCart';
+import { partners } from 'src/helpers/functions';
 
 import { ModalCartProps } from '../../@types';
 
@@ -92,7 +93,7 @@ const ModalCart: React.FC<ModalCartProps> = ({
         <div className="section-buttons">
           <Button
             text="Finalizar Compra"
-            handleClick={() => history.push('/checkout')}
+            handleClick={() => history.push(`/${partners()}/checkout`)}
             customClass="btn btn-lg"
           />
           <Button

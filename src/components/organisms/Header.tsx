@@ -10,6 +10,9 @@ import Error from 'src/exceptions/Error';
 import ShoppingCartProps from 'src/@types/ShoppingCart';
 import { PokemonProps } from 'src/@types/PokemonTypes';
 
+// HELPERS
+import { partners } from 'src/helpers/functions';
+
 import Image from '../atoms/Image';
 import Input from '../atoms/Input';
 import IconSVG from '../molecules/IconSVG';
@@ -74,7 +77,7 @@ const Header: React.FC = () => {
               <div
                 tabIndex={0}
                 role="button"
-                onClick={() => history.push('/')}
+                onClick={() => history.push(`/${partners()}`)}
                 onKeyDown={() => {}}
                 className="image-header"
               >
@@ -115,7 +118,7 @@ const Header: React.FC = () => {
                   <span className="badge cart-badge text-white">
                     {shoppingCart.length}
                   </span>
-                  <IconSVG width="35" height="35" icon="cart" fill="#979799" />
+                  <IconSVG width="35" height="35" icon="cart" fill="#ffffff" />
                 </div>
               </div>
             </div>
