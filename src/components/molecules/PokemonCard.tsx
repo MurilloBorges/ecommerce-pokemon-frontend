@@ -44,15 +44,13 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
       store.shoppingCart as ShoppingCartProps[],
   );
 
+  // TODO: Implementar modal de detalhes do pokemon ao clicar na imagem do pokémon
   async function getPokemon() {
     try {
       const instance = PokemonService.getInstance();
       const res = await instance.getById(id);
       if (res.status === 200) {
         const data = res.data as PokemonProps;
-        // setCurrentImage(
-        //   data.sprites?.other.dream_world.front_default as string,
-        // );
       }
     } catch (error) {
       Error.generic(error);

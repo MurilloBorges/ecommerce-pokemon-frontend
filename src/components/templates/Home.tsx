@@ -30,16 +30,20 @@ const Home: React.FC = () => {
   async function getPokemon() {
     dispatch(dispatcher('LOADING', true));
     try {
+      // 649 total de imagens disponíveis para get
+      // Get aleatório
+      const limit = Math.floor(Math.random() * 649) + 1;
       const pokemon = PokemonService.getInstance();
-      const res = await pokemon.getAll();
+      const res = await pokemon.getAll(limit, limit + 20);
       if (res.status === 200) {
         const data = res.data as ResponsePokemonProps;
-        const pokemonFiltred = data.results.map((result, index) => ({
+        const pokemonFiltred = data.results.map(result => ({
           ...result,
-          id: index + 1,
-          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-            index + 1
-          }.svg`,
+          id: parseInt(result.url.split('/')[6], 10),
+          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${parseInt(
+            result.url.split('/')[6],
+            10,
+          )}.svg`,
           retailPrice: Math.floor(Math.random() * 9999) + 1,
           retailPromotionPrice: Math.floor(Math.random() * 9999) + 1,
         })) as PokemonProps[];

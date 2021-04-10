@@ -13,8 +13,10 @@ export default class PokemonService extends HttpClientEcommerce {
     return this.classInstance;
   }
 
-  public getAll = (): AxiosPromise =>
-    this.instance.get<IPokemonInterface>(`/pokemon`);
+  public getAll = (limit: number, offset: number): AxiosPromise =>
+    this.instance.get<IPokemonInterface>(
+      `/pokemon/?limit=${limit}&offset=${offset}`,
+    );
 
   public getById = (id: number): AxiosPromise =>
     this.instance.get<IPokemonInterface>(`/pokemon/${id}/`);

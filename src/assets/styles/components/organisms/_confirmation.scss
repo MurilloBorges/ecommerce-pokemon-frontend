@@ -7,33 +7,11 @@
         color: var(--success-color);
         font-weight: 700;
       }
-      .checkout-resume {
-        display: flex;
-        justify-content: center;
-
-        .selected-place,
-        .selected-payment,
-        .selected-delivery {
-          display: flex;
-          flex-direction: column;
-          padding: 2rem 3rem;
-          text-align: left;
-
-          .resume-subtitle {
-            font-weight: 700;
-          }
-        }
-      }
     }
   }
 }
 
 @media screen and (max-width: 768px) {
-  .selected-place,
-  .selected-payment,
-  .selected-delivery {
-    text-align: center !important;
-  }
 }
 
 @media screen and (min-width: $break-l) {
