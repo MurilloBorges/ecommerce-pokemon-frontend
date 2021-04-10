@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // SERVICES
 import PokemonService from 'src/services/PokemonService';
+import Error from 'src/exceptions/Error';
 
 // INTERFACES
 import { PokemonProps } from 'src/@types/PokemonTypes';
@@ -24,7 +25,7 @@ import notFoundImage from '../../assets/images/image-not-found.svg';
 
 import { handleShoppingCart } from '../../helpers/shoppingCart';
 
-const dispatcher = (type: string, payload: ShoppingCartProps[]) => ({
+const dispatcher = (type: string, payload: boolean | ShoppingCartProps[]) => ({
   type,
   payload,
 });
@@ -45,11 +46,17 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   );
 
   async function getPokemonImage() {
-    const instance = PokemonService.getInstance();
-    const res = await instance.getById(id);
-    if (res.status === 200) {
-      const data = res.data as PokemonProps;
-      setImage(data.sprites?.other.dream_world.front_default as string);
+    try {
+      const instance = PokemonService.getInstance();
+      const res = await instance.getById(id);
+      if (res.status === 200) {
+        const data = res.data as PokemonProps;
+        setImage(data.sprites?.other.dream_world.front_default as string);
+      }
+    } catch (error) {
+      Error.generic(error);
+    } finally {
+      dispatch(dispatcher('LOADING', false));
     }
   }
 
@@ -106,12 +113,13 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   return (
     <div key={id} className="pokemon-card">
       <div className="pokemon">
-        {/* {retailPromotionPrice < retailPrice && (
+        {(retailPromotionPrice || 0) < (retailPrice || 0) && (
           <div className="offer-label background-danger">
             <Title type="h4" text="OFERTA" />
           </div>
         )}
-        {offer && (
+        {(retailPrice || 0) - (retailPromotionPrice || 0) >
+          (retailPrice || 0) / 2 && (
           <div className="offer-label background-success">
             <IconSVG
               className="mr-2"
@@ -121,7 +129,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
             />
             <Title type="h4" text="OFERTA EXCLUSIVA" />
           </div>
-        )} */}
+        )}
         <Image src={image || notFoundImage} alt="" />
         <div className="group-text">
           <Subtitle props={{ id: 'pokemon-name' }} type="span" text={name} />

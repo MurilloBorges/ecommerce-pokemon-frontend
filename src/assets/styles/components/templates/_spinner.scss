@@ -5,12 +5,13 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  position: absolute;
+  position: sticky;
+  overflow: hidden;
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 99999999;
 
   img {
-    max-width: 25%;
+    max-width: 5rem;
   }
 }
