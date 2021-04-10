@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Lottie from 'react-lottie';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+// INTERFACES
+import ShoppingCartProps from 'src/@types/ShoppingCart';
 
 import Title from 'src/components/atoms/Title';
+import { partners } from 'src/helpers/functions';
 import animationData from '../../../assets/images/37265-success-animation.json';
 
+const dispatcher = (type: string, payload: ShoppingCartProps[]) => ({
+  type,
+  payload,
+});
+
 const Confirmation: React.FC = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const defaultOptions = {
     loop: false,
     autoplay: true,
@@ -13,6 +27,13 @@ const Confirmation: React.FC = () => {
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
+
+  useEffect(() => {
+    dispatch(dispatcher('SHOPPING_CART', []));
+    setTimeout(() => {
+      history.push(`/${partners()}`);
+    }, 3000);
+  }, []);
 
   return (
     <div className="checkout-confirmation">
