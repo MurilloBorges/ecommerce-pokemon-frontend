@@ -130,35 +130,33 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           <Subtitle props={{ id: 'pokemon-name' }} type="span" text={name} />
           <Subtitle
             props={
-              retailPromotionPrice &&
-              retailPrice &&
-              retailPromotionPrice < retailPrice
+              (retailPromotionPrice || 0) < (retailPrice || 0)
                 ? { id: 'price-of-for' }
                 : {}
             }
             type="span"
             text={
-              retailPromotionPrice &&
-              retailPrice &&
-              retailPromotionPrice < retailPrice
-                ? `de ${formatReal(retailPrice)} por`
+              (retailPromotionPrice || 0) < (retailPrice || 0)
+                ? `de ${formatReal(retailPrice || 0)} por`
                 : ' '
             }
           />
           <Subtitle
             props={{ id: 'no-discounted-price' }}
             type="span"
-            text={`${formatReal(retailPromotionPrice as number)}`}
+            text={
+              (retailPromotionPrice || 0) < (retailPrice || 0)
+                ? formatReal(retailPromotionPrice as number)
+                : formatReal(retailPrice as number)
+            }
           />
           <Subtitle
             props={{ id: 'save-price' }}
             type="span"
             text={
-              retailPromotionPrice &&
-              retailPrice &&
-              retailPromotionPrice < retailPrice
+              (retailPromotionPrice || 0) < (retailPrice || 0)
                 ? `* Economize: ${formatReal(
-                    retailPrice - retailPromotionPrice,
+                    (retailPrice || 0) - (retailPromotionPrice || 0),
                   )}`
                 : ' '
             }

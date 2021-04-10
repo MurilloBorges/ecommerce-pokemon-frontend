@@ -28,6 +28,7 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
   type,
   pokemon,
 }: PokemonCardProps) => {
+  console.log(pokemon);
   const dispatch = useDispatch();
   const [quantity, setQuantity] = React.useState(0);
   const [isEdited, setIsEdited] = React.useState(false);
@@ -174,7 +175,10 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
         );
       case 'checkout': {
         const filteredProd = shoppingCart.find(prod => prod.id === pokemon.id);
-        const numberedPrice = Number(pokemon?.retailPrice);
+        const numberedPrice =
+          (pokemon?.retailPromotionPrice || 0) < (pokemon?.retailPrice || 0)
+            ? Number(pokemon?.retailPromotionPrice)
+            : Number(pokemon?.retailPrice);
         return (
           <div className="container-modal-cart">
             <div>
