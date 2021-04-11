@@ -1,5 +1,5 @@
 /* eslint-disable no-void */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // SERVICES
@@ -8,6 +8,7 @@ import Error from 'src/exceptions/Error';
 
 // INTERFACES
 import { PokemonProps, ResponsePokemonProps } from 'src/@types/PokemonTypes';
+import ShoppingCartProps from 'src/@types/ShoppingCart';
 
 import Banner from '../molecules/Banner';
 import HorizontalOfferPokemon from '../organisms/HorizontalOfferPokemon';
@@ -22,6 +23,10 @@ const dispatcher = (type: string, payload: boolean | PokemonProps[]) => ({
 });
 
 const Home: React.FC = () => {
+  const shoppingCart = useSelector(
+    (store: Record<string, unknown>) =>
+      store.shoppingCart as ShoppingCartProps[],
+  );
   const pokes = useSelector(
     (store: Record<string, unknown>) => store.pokemon as PokemonProps[],
   );
@@ -30,11 +35,11 @@ const Home: React.FC = () => {
   async function getPokemon() {
     dispatch(dispatcher('LOADING', true));
     try {
-      // 649 total de imagens disponíveis para get
+      // 649 - 20 (limit) = 629 total de imagens disponíveis para get
       // Get aleatório
-      const limit = Math.floor(Math.random() * 649) + 1;
+      const limit = Math.floor(Math.random() * 629) + 1;
       const pokemon = PokemonService.getInstance();
-      const res = await pokemon.getAll(limit, limit + 20);
+      const res = await pokemon.getAll(20, limit);
       if (res.status === 200) {
         const data = res.data as ResponsePokemonProps;
         const pokemonFiltred = data.results.map(result => ({
@@ -57,7 +62,10 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    void getPokemon();
+    // somente se o carrinho estiver vazio
+    if (shoppingCart.length === 0) {
+      void getPokemon();
+    }
   }, []);
 
   return (

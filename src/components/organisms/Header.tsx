@@ -43,22 +43,26 @@ const Header: React.FC = () => {
   async function handleSearch() {
     dispatch(dispatcher('LOADING', true));
     try {
-      const pokemon = PokemonService.getInstance();
-      const res = await pokemon.search(search);
-      if (res.status === 200) {
-        console.log(res.data);
-        const data = res.data as PokemonProps;
-        const poke = {
-          name: data.name,
-          id: data.id,
-          retailPrice: Math.floor(Math.random() * 9999) + 1,
-          retailPromotionPrice: Math.floor(Math.random() * 9999) + 1,
-          image: data.sprites?.other.dream_world.front_default as string,
-        } as PokemonProps;
-        const pokemonList = pokes;
-        // TODO: Melhorar essa transição e validar se o pokemon que foi pesquisado já contém no list
-        dispatch(dispatcher('POKEMON_LIST', []));
-        dispatch(dispatcher('POKEMON_LIST', [poke, ...pokemonList]));
+      // valida se o pokemon pesquisado já existe na vitrine
+      if (
+        pokes.filter(poke => poke.name.toUpperCase() === search.toUpperCase())
+          .length === 0
+      ) {
+        const pokemon = PokemonService.getInstance();
+        const res = await pokemon.search(search);
+        if (res.status === 200) {
+          const data = res.data as PokemonProps;
+          const poke = {
+            name: data.name,
+            id: data.id,
+            retailPrice: Math.floor(Math.random() * 9999) + 1,
+            retailPromotionPrice: Math.floor(Math.random() * 9999) + 1,
+            image: data.sprites?.other.dream_world.front_default as string,
+          } as PokemonProps;
+          // TODO: Quando adicionar um pokemon a vitrine, voltar o slider para posição inicial;
+          const list = (pokes.unshift(poke) as unknown) as PokemonProps[];
+          dispatch(dispatcher('POKEMON_LIST', [...list]));
+        }
       }
     } catch (error) {
       Error.generic(error);
