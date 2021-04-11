@@ -70,6 +70,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
+      {/* TODO: Implementar banner de acordo com o parceiro "volcanic, seavell e wingeon" */}
       <Banner src={banner} />
       <HorizontalOfferPokemon offerPokemon={pokes} div="shopping" />
     </div>
