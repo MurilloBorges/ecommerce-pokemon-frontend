@@ -198,6 +198,7 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
               {handleExcludeButtons()}
             </div>
             <div>
+              <Subtitle type="span" text="Un." />
               <Title
                 type="h5"
                 text={
@@ -209,6 +210,7 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
               />
             </div>
             <div>
+              <Subtitle type="span" text="Subtotal" />
               <Title
                 type="h4"
                 text={formatReal(numberedPrice * (filteredProd?.quantity || 1))}
