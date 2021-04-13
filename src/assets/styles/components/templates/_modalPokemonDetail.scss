@@ -2,15 +2,17 @@
   .overlay {
     .modal {
       &__close {
-        left: 10rem;
+        left: 19rem;
       }
-      .payment {
-        svg {
+      .pokemon-detail {
+        img {
           margin-top: 1rem;
+          width: auto;
+          height: 8rem;
         }
         h5 {
           color: var(--primary-color);
-          font-weight: 600;
+          font-weight: 700;
           margin: 1.2rem 0;
         }
         #continue {
@@ -32,7 +34,7 @@
   .overlay {
     .modal {
       &__close {
-        left: 13rem;
+        left: 25rem;
       }
       .button-group {
         display: flex;

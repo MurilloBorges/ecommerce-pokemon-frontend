@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 
 import ShoppingCartProps from 'src/@types/ShoppingCart';
 import Title from 'src/components/atoms/Title';
-import IconSVG from 'src/components/molecules/IconSVG';
-import ModalPayment from 'src/components/templates/ModalPayment';
 
 import { formatReal } from 'src/helpers/number';
 
@@ -13,7 +11,6 @@ import CartPokemonList from '../CartPokemonList';
 const ShoppingCart: React.FC = () => {
   const [totalCart, setTotalCart] = React.useState(0);
   const [accQuantity, setAccQuantity] = React.useState<number>(0);
-  const [modal, setModal] = React.useState<boolean>(false);
   const shoppingCart = useSelector(
     (store: Record<string, unknown>) =>
       store.shoppingCart as ShoppingCartProps[],
@@ -39,39 +36,34 @@ const ShoppingCart: React.FC = () => {
   }, [shoppingCart]);
 
   return (
-    <>
-      <ModalPayment setModal={setModal} modal={modal} handleSubmit={() => {}} />
-      <div className="modal-cart">
-        {!shoppingCart.length && (
-          <h6 className="text-center">
-            Nenhum Pokémon adicionado no carrinho!
-          </h6>
-        )}
-        {shoppingCart.map((pokemon, key) => (
-          <CartPokemonList
-            type="checkout"
-            key={key.toString()}
-            pokemon={pokemon}
-          />
-        ))}
-        <div className="price-footer price-footer-quantity">
-          <div className="first-section">
-            <Title type="h4" text="Total de Itens" />
-          </div>
-          <div className="second-section">
-            <Title type="h4" text={accQuantity.toString()} />
-          </div>
+    <div className="modal-cart">
+      {!shoppingCart.length && (
+        <h6 className="text-center">Nenhum Pokémon adicionado no carrinho!</h6>
+      )}
+      {shoppingCart.map((pokemon, key) => (
+        <CartPokemonList
+          type="checkout"
+          key={key.toString()}
+          pokemon={pokemon}
+        />
+      ))}
+      <div className="price-footer price-footer-quantity">
+        <div className="first-section">
+          <Title type="h4" text="Total de Itens" />
         </div>
-        <div className="price-footer">
-          <div className="first-section">
-            <Title type="h4" text="Total de Compras" />
-          </div>
-          <div className="second-section">
-            <Title type="h4" text={formatReal(totalCart)} />
-          </div>
+        <div className="second-section">
+          <Title type="h4" text={accQuantity.toString()} />
         </div>
       </div>
-    </>
+      <div className="price-footer">
+        <div className="first-section">
+          <Title type="h4" text="Total de Compras" />
+        </div>
+        <div className="second-section">
+          <Title type="h4" text={formatReal(totalCart)} />
+        </div>
+      </div>
+    </div>
   );
 };
 

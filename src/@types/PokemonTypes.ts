@@ -18,7 +18,12 @@ interface SpritesProps {
   front_shiny_female: string;
   other: OtherProps;
 }
+
+interface MoveProps {
+  move: { name: string; url: string };
+}
 interface PokemonProps {
+  moves?: MoveProps[];
   id: number;
   name: string;
   url: string;
@@ -39,4 +44,9 @@ interface IPokemonInterface {
   data: ResponsePokemonProps;
 }
 
-export type { IPokemonInterface, PokemonProps, ResponsePokemonProps };
+export type {
+  IPokemonInterface,
+  PokemonProps,
+  ResponsePokemonProps,
+  MoveProps,
+};

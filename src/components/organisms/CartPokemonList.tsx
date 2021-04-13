@@ -28,7 +28,6 @@ const CartPokemonList: React.FC<PokemonCardProps> = ({
   type,
   pokemon,
 }: PokemonCardProps) => {
-  console.log(pokemon);
   const dispatch = useDispatch();
   const [quantity, setQuantity] = React.useState(0);
   const [isEdited, setIsEdited] = React.useState(false);

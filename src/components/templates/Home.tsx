@@ -10,12 +10,15 @@ import Error from 'src/exceptions/Error';
 import { PokemonProps, ResponsePokemonProps } from 'src/@types/PokemonTypes';
 import ShoppingCartProps from 'src/@types/ShoppingCart';
 
+import { partners } from 'src/helpers/functions';
+
 import Banner from '../molecules/Banner';
 import HorizontalOfferPokemon from '../organisms/HorizontalOfferPokemon';
-import bgFire from '../../assets/images/bg-poke-ball-fire.jpg';
-import bgWater from '../../assets/images/bg-poke-ball-water.jpg';
-import bgDragon from '../../assets/images/bg-poke-ball-dragon.jpg';
-import banner from '../../assets/images/banner.jpg';
+
+import volcanic from '../../assets/images/volcanic.jpg';
+import seavell from '../../assets/images/seavell.jpg';
+import wingeon from '../../assets/images/wingeon.jpg';
+import bannerDefault from '../../assets/images/banner.jpg';
 
 const dispatcher = (type: string, payload: boolean | PokemonProps[]) => ({
   type,
@@ -23,6 +26,26 @@ const dispatcher = (type: string, payload: boolean | PokemonProps[]) => ({
 });
 
 const Home: React.FC = () => {
+  const [banner, setBanner] = React.useState<string>('');
+
+  useEffect(() => {
+    const partner = partners();
+    switch (partner) {
+      case 'volcanic':
+        setBanner(volcanic);
+        break;
+      case 'seavell':
+        setBanner(seavell);
+        break;
+      case 'wingeon':
+        setBanner(wingeon);
+        break;
+      default:
+        setBanner(bannerDefault);
+        break;
+    }
+  }, []);
+
   const shoppingCart = useSelector(
     (store: Record<string, unknown>) =>
       store.shoppingCart as ShoppingCartProps[],
@@ -70,7 +93,6 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
-      {/* TODO: Implementar banner de acordo com o parceiro "volcanic, seavell e wingeon" */}
       <Banner src={banner} />
       <HorizontalOfferPokemon offerPokemon={pokes} div="shopping" />
     </div>

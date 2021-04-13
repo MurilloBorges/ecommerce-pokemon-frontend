@@ -1,5 +1,5 @@
 /* eslint-disable no-void */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // SERVICES
@@ -24,6 +24,7 @@ import QuantitativeGroupButton from './QuantitativeGroupButton';
 import notFoundImage from '../../assets/images/image-not-found.svg';
 
 import { handleShoppingCart } from '../../helpers/shoppingCart';
+import ModalPokemonDetail from '../templates/ModalPokemonDetail';
 
 const dispatcher = (type: string, payload: boolean | ShoppingCartProps[]) => ({
   type,
@@ -34,6 +35,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   pokemon,
 }: PokemonCardProps) => {
   const { id, name, url, retailPrice, retailPromotionPrice, image } = pokemon;
+  const [modal, setModal] = React.useState<boolean>(false);
+  const [poke, setPoke] = useState<PokemonProps>();
 
   const dispatch = useDispatch();
   const [openAdition, setopenAdition] = React.useState(false);
@@ -44,13 +47,15 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
       store.shoppingCart as ShoppingCartProps[],
   );
 
-  // TODO: Implementar modal de detalhes do pokemon ao clicar na imagem do pokémon
   async function getPokemon() {
+    dispatch(dispatcher('LOADING', true));
     try {
       const instance = PokemonService.getInstance();
       const res = await instance.getById(id);
       if (res.status === 200) {
         const data = res.data as PokemonProps;
+        setPoke({ ...data });
+        setModal(!modal);
       }
     } catch (error) {
       Error.generic(error);
@@ -106,80 +111,91 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   }, [shoppingCart]);
 
   return (
-    <div key={id} className="pokemon-card" id={id.toString()}>
-      <div className="pokemon" id={name}>
-        {(retailPromotionPrice || 0) < (retailPrice || 0) && (
-          <div className="offer-label background-danger">
-            <Title type="h4" text="OFERTA" />
-          </div>
-        )}
-        {(retailPrice || 0) - (retailPromotionPrice || 0) >
-          (retailPrice || 0) / 2 && (
-          <div className="offer-label background-success">
-            <IconSVG
-              className="mr-2"
-              icon="exclusive-offer"
-              width="25"
-              height="25"
+    <>
+      {poke?.id && (
+        <ModalPokemonDetail setModal={setModal} modal={modal} pokemon={poke} />
+      )}
+      <div key={id} className="pokemon-card" id={id.toString()}>
+        <div className="pokemon" id={name}>
+          {(retailPromotionPrice || 0) < (retailPrice || 0) && (
+            <div className="offer-label background-danger">
+              <Title type="h4" text="OFERTA" />
+            </div>
+          )}
+          {(retailPrice || 0) - (retailPromotionPrice || 0) >
+            (retailPrice || 0) / 2 && (
+            <div className="offer-label background-success">
+              <IconSVG
+                className="mr-2"
+                icon="exclusive-offer"
+                width="25"
+                height="25"
+              />
+              <Title type="h4" text="OFERTA EXCLUSIVA" />
+            </div>
+          )}
+          <button
+            type="button"
+            className="btn btn-link"
+            onClick={() => getPokemon()}
+          >
+            <Image id={id.toString()} src={image || notFoundImage} alt={name} />
+          </button>
+          <div className="group-text">
+            <Subtitle props={{ id: 'pokemon-name' }} type="span" text={name} />
+            <Subtitle
+              props={
+                (retailPromotionPrice || 0) < (retailPrice || 0)
+                  ? { id: 'price-of-for' }
+                  : {}
+              }
+              type="span"
+              text={
+                (retailPromotionPrice || 0) < (retailPrice || 0)
+                  ? `de ${formatReal(retailPrice || 0)} por`
+                  : ' '
+              }
             />
-            <Title type="h4" text="OFERTA EXCLUSIVA" />
+            <Subtitle
+              props={{ id: 'no-discounted-price' }}
+              type="span"
+              text={
+                (retailPromotionPrice || 0) < (retailPrice || 0)
+                  ? formatReal(retailPromotionPrice as number)
+                  : formatReal(retailPrice as number)
+              }
+            />
+            <Subtitle
+              props={{ id: 'save-price' }}
+              type="span"
+              text={
+                (retailPromotionPrice || 0) < (retailPrice || 0)
+                  ? `* Economize: ${formatReal(
+                      (retailPrice || 0) - (retailPromotionPrice || 0),
+                    )}`
+                  : ' '
+              }
+            />
           </div>
-        )}
-        <Image id={id.toString()} src={image || notFoundImage} alt={name} />
-        <div className="group-text">
-          <Subtitle props={{ id: 'pokemon-name' }} type="span" text={name} />
-          <Subtitle
-            props={
-              (retailPromotionPrice || 0) < (retailPrice || 0)
-                ? { id: 'price-of-for' }
-                : {}
-            }
-            type="span"
-            text={
-              (retailPromotionPrice || 0) < (retailPrice || 0)
-                ? `de ${formatReal(retailPrice || 0)} por`
-                : ' '
-            }
-          />
-          <Subtitle
-            props={{ id: 'no-discounted-price' }}
-            type="span"
-            text={
-              (retailPromotionPrice || 0) < (retailPrice || 0)
-                ? formatReal(retailPromotionPrice as number)
-                : formatReal(retailPrice as number)
-            }
-          />
-          <Subtitle
-            props={{ id: 'save-price' }}
-            type="span"
-            text={
-              (retailPromotionPrice || 0) < (retailPrice || 0)
-                ? `* Economize: ${formatReal(
-                    (retailPrice || 0) - (retailPromotionPrice || 0),
-                  )}`
-                : ' '
-            }
-          />
+          {!openAdition && (
+            <div className="group-button">
+              <Button
+                type="button"
+                text="Adicionar"
+                handleClick={() => handleOpenAdition()}
+              />
+            </div>
+          )}
+          {openAdition && (
+            <QuantitativeGroupButton
+              handleQuantity={handleQuantity}
+              quantity={quantity}
+              labelValue="und."
+            />
+          )}
         </div>
-        {!openAdition && (
-          <div className="group-button">
-            <Button
-              type="button"
-              text="Adicionar"
-              handleClick={() => handleOpenAdition()}
-            />
-          </div>
-        )}
-        {openAdition && (
-          <QuantitativeGroupButton
-            handleQuantity={handleQuantity}
-            quantity={quantity}
-            labelValue="und."
-          />
-        )}
       </div>
-    </div>
+    </>
   );
 };
 
