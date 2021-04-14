@@ -2,6 +2,12 @@
 
 E-commerce desenvolvido para a venda de Pokémon, produto totalmente white label, contemplado os temas água, fogo e dragão.
 
+# Tecnologias utilizadas
+
+- Para o frontend foi utilizado a ferramenta React Typescript;
+
+- Para os testes automaizados foi utilizado o framework cypress;
+
 ## O projeto consiste em:
 
 ### Catálogo de produtos;
@@ -73,3 +79,24 @@ E-commerce desenvolvido para a venda de Pokémon, produto totalmente white label
 ### Uma página com mais detalhes do Pokémon, tendo informações como os tipos, movimentos, pontos fracos e pontos fortes. Dessa forma o usuário poderá navegar para essa página e adicionar o Pokémon no carrinho ou voltar para o catálogo.
 
 > Criada modal de detalhes do Pokémon, que é exibida ao clicar na imagem de pokémon;
+
+# Requisitos para a execução do projeto
+
+- Ter o NodeJS instalado de preferência a última versão ou superior a v12.16.1;
+
+  > [Instalando o Node](https://nodejs.org/pt-br/download/package-manager/ 'Clique aqui para aprender a instalar o Node!')
+
+- Ter o gerenciador de dependências yarn instalado (npm também funciona, porém recomendo fortemente o yarn)
+  > [Instalando o yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#debian-stable 'Clique aqui para aprender a instalar o yarn!')
+
+## Executando o projeto
+
+1. Acessar a pasta frontend e executar os seguintes comandos:
+
+> yarn install
+
+> yarn start (obs: configurar o arquivo .env na raiz da pasta frontend: copiar conteúdo do .env.example)
+
+> yarn cy:open (para executar os testes e2e no frontend) | (obs: para linux caso dê problema de permissão executar o comando "/home sudo chmod -R 777 murillo/.config/Cypress")
+
+> divirta-se com as funcionalidades

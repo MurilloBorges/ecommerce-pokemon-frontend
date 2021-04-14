@@ -13,7 +13,7 @@ const Routes = (): React.ReactElement => (
         <Redirect to="/volcanic" />
       </Route>
 
-      {/* <Route exact path="/:parceiro">
+      {/* <Route exact path="/:partner">
         <Home />
       </Route> */}
       <Route exact path="/volcanic">
@@ -26,7 +26,7 @@ const Routes = (): React.ReactElement => (
         <Home />
       </Route>
 
-      <Route exact path="/:parceiro/checkout">
+      <Route exact path="/:partner/checkout">
         <Checkout />
       </Route>
 
