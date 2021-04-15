@@ -17,16 +17,34 @@ Cypress.Commands.add('dataCySelect', (dataCy, select, value) => cy.dataCy(dataCy
 
 Cypress.Commands.add('showModal', () => {
   cy.log('Exibindo modal');
+  cy.class('spinner').then(($loader) => {
+    console.log($loader);
+    if (!$loader) {
+      cy.dataCy('btn-show-modal-detail-pokemon').click({ force: true });
+    }
+  });
 });
 
 Cypress.Commands.add('addPokemon', () => {
   cy.log('Adicionando Pokémon ao carrinho');
+  cy.class('spinner').then(($loader) => {
+    if (!$loader) {
+    }
+  });
 });
 
 Cypress.Commands.add('checkout', () => {
   cy.log('Realizando o checkout da compra');
+  cy.class('spinner').then(($loader) => {
+    if (!$loader) {
+    }
+  });
 });
 
 Cypress.Commands.add('finish', () => {
   cy.log('Finalizando a compra');
+  cy.class('spinner').then(($loader) => {
+    if (!$loader) {
+    }
+  });
 });

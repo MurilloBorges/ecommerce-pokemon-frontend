@@ -137,6 +137,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           <button
             type="button"
             className="btn btn-link"
+            data-cy="btn-show-modal-detail-pokemon"
             onClick={() => getPokemon()}
           >
             <Image id={id.toString()} src={image || notFoundImage} alt={name} />
